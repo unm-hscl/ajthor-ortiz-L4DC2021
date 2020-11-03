@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+
+### YALMIP
+#
+YALMIP_VER=R20181012
+curl -sL https://github.com/yalmip/YALMIP/archive/$YALMIP_VER.tar.gz | tar xz
+mv YALMIP-$YALMIP_VER YALMIP
+echo 'Downloaded YALMIP'
+
+### CVX
+#
+curl -sL http://web.cvxr.com/cvx/cvx-a64.tar.gz | tar zx
+echo 'Downloaded CVX'
+
+### SReachTools
+#
+curl -sL https://github.com/unm-hscl/SReachTools/archive/new_structure.zip --output SReachTools.zip
+unzip -qq SReachTools.zip
+mv SReachTools-new_structure SReachTools
+rm SReachTools.zip
+echo 'Downloaded SReachTools'
+
+### Setup MATLAB environment for SReachTools
+#
+matlab -nodisplay -nosoftwareopengl -r "setup_dependencies;"

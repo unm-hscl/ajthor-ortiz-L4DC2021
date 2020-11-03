@@ -1,0 +1,13 @@
+metadata_version: 1
+name: 'Code for SReachTools Kernel Module: Data-Driven Stochastic Reachability Using Hilbert Space Embeddings of Distributions'
+description: 'Code for the paper, "SReachTools Kernel Module: Data-Driven Stochastic Reachability Using Hilbert Space Embeddings of Distributions," HSCC 2021.'
+authors:
+- name: Adam Thorpe
+  affiliations:
+  - name: University of New Mexico
+- name: Kendric Ortiz
+  affiliations:
+  - name: University of New Mexico
+- name: Meeko Oishi
+  affiliations:
+  - name: University of New Mexico
