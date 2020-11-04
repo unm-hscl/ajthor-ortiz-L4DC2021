@@ -55,13 +55,6 @@ if plotting
     ax_surf.NextPlot = 'add';
     plot(safe_set_projection, 'color', 'y', 'alpha', 0.1);
     plot(target_set_projection, 'color', 'g', 'alpha', 0.1);
-
-    gf = figure;
-    ax_param = axes(gf);
-    ax_param.NextPlot = 'add';
-    plot(safe_set_projection, 'color', 'y', 'alpha', 0.1);
-    plot(target_set_projection, 'color', 'g', 'alpha', 0.1);
-
 end
 
 %% Define the system.
@@ -78,7 +71,7 @@ F = sys.F;
 %% Generate samples.
 %
 
-% Specify the initial xondition x0.
+% Specify the initial condition x0.
 X0 = [-0.75; -0.75; 0; 0];
 
 % Generate optimal control policy from initial condition.
@@ -116,15 +109,14 @@ if plotting
 end
 
 % Plot the terminal states.
-if plotting, scatter(ax_surf,  X(1, :), X(2, :), 'k.'); end
-if plotting, scatter(ax_param, X(1, :), X(2, :), 'k.'); end
+if plotting, scatter(ax_surf, X(1, :), X(2, :), 'k.'); end
 
 % Generate test points.
 
 Mt = 10000;
 
 xt_xx = linspace(-0.2, 0.2, 100);
-yt_yy = linspace(-0.2, 0.1, 100);
+yt_yy = linspace(-0.2, 0.2, 100);
 [XX, YY] = meshgrid(xt_xx, yt_yy);
 
 Xt = [
@@ -146,35 +138,5 @@ if plotting
     ax_surf.YLim = [-0.2, 0.1];
     [~, ch] = contour(ax_surf, xt_xx, yt_yy, C, [1 1]);
     ch.LineWidth = 1;
-    ch.Color = 'r';
-end
-
-%% Classify points for different values of sigma.
-
-lambdas = [1/M, 1/(M^2), 1/(M^3)];
-
-for p = 1:length(lambdas)
-
-    alg = KernelClassifier('sigma', 0.1, 'lambda', lambdas(p));
-    results_P = alg.Classify(X, Xt);
-
-    C = double(reshape(results_P.contains, 100, 100));
-
-    if plotting
-        ax_param.XLim = [-0.2, 0.2];
-        ax_param.YLim = [-0.2, 0.1];
-        [~, ch] = contour(ax_param, xt_xx, yt_yy, C, [1 1]);
-        ch.LineWidth = 1;
-        ch.Color = 'r';
-
-        ch0 = get(ch, 'children');
-        set(ch0, 'facealpha', 0.1);
-
-%         if sigmas(s) == 0.1
-%             ch.Alpha = 1;
-%         else
-%             ch.Alpha = 0.1;
-%         end
-    end
-
+    ch.Color = 'b';
 end
