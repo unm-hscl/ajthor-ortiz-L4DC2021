@@ -12,7 +12,7 @@ M = size(Y, 2);
 % Compute the Gram matrix.
 G = obj.compute_autocovariance(Y, obj.Sigma);
 
-% W = inv((1/M)*G + lambda); %#ok<*MINV>
+% W = inv((1/M)*G + obj.Lambda); %#ok<*MINV>
 W = inv(G + M*obj.Lambda*eye(M)); %#ok<*MINV>
 
 % Compute tau_n.
