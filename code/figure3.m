@@ -41,7 +41,7 @@ safe_set_projection = safe_set.slice([3, 4], zeros(2, 1));
 target_set_projection = target_set.slice([3, 4], zeros(2, 1));
 
 % Create the figure for plotting.
-df = figure;
+df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
 ax_data = axes(df);
 ax_data.NextPlot = 'add';
 plot(safe_set_projection, 'color', 'y', 'alpha', 0.1);
@@ -58,6 +58,9 @@ A = sys.A;
 B = sys.B;
 F = sys.F;
 
+M = 100;       % Number of observations.
+Mt = 10000;     % Number of test points.
+
 % Specify the terminal condition xN.
 XN = [0; 0; 0; 0];
 
@@ -67,11 +70,8 @@ alg_CCO = srt.algorithms.ChanceOpen('pwa_accuracy', 1E-3);
 alg = KernelClassifier('sigma', 0.1, 'lambda', 1/M);
 
 % Generate samples.
-M = 1000;       % number of observations.
-Mt = 1024;     % Number of test points.
-
-x0_xx = linspace(-1, 1, 32);
-y0_yy = linspace(-1, 0, 32);
+x0_xx = linspace(-1, 1, 100);
+y0_yy = linspace(-1, 0, 100);
 [XX, YY] = meshgrid(x0_xx, y0_yy);
 X0 = [
     reshape(XX, 1, []);
@@ -81,6 +81,8 @@ X0 = [
     ];
 
 C = zeros(1, size(X0, 2));
+
+tic
 
 for n = 1:Mt
 
@@ -113,10 +115,23 @@ for n = 1:Mt
 
 end
 
+toc
+
 %% Plot the results.
 
-C = reshape(C, 32, 32);
+C = reshape(C, 100, 100);
 
 [~, ch] = contour(ax_data, x0_xx, y0_yy, C, [1 1]);
 ch.LineWidth = 1;
 ch.Color = 'b';
+
+X0 = [-0.75; -0.75; 0; 0];
+ph = plot(ax_data, X0(1), X0(2), 'rx-');
+ph.LineWidth = 1.5;
+
+ax_data.Title.String = '(b)';
+ax_data.XLabel.Interpreter = 'latex';
+ax_data.XLabel.String = '$z_{1}$';
+ax_data.YLabel.Interpreter = 'latex';
+ax_data.YLabel.String = '$z_{2}$';
+ax_data.FontSize = 9;

@@ -41,7 +41,7 @@ safe_set_projection = safe_set.slice([3, 4], zeros(2, 1));
 target_set_projection = target_set.slice([3, 4], zeros(2, 1));
 
 % Create the figure for plotting.
-df = figure;
+df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
 ax_data = axes(df);
 ax_data.NextPlot = 'add';
 plot(safe_set_projection, 'color', 'y', 'alpha', 0.1);
@@ -69,7 +69,7 @@ results_CCO = SReachPoint(prob, alg_CCO, sys, X0);
 %% Plotting
 
 % Generate output samples from initial condition.
-M = 1000;       % number of observations.
+M = 100;       % number of observations.
 Mt = 10000;     % Number of test points.
 
 X = repmat(X0, [1 M]);
@@ -82,6 +82,8 @@ idx = randperm(M, 25);
 X0_traj = zeros(4, N);
 X0_traj(:, 1) = X0;
 
+tic
+
 for k = 1:N-1
 
     X0_traj(:, k+1) = A*X0_traj(:, k) + B*U(:, k);
@@ -89,7 +91,7 @@ for k = 1:N-1
     X = A*X + B*U(:, k) + F*sys.Disturbance.sample(M);
 
     % Plot a random sample of the points.
-    scatter(ax_data, X(1, idx), X(2, idx), 'k.');
+    % scatter(ax_data, X(1, idx), X(2, idx), 'k.');
 
     % Generate test points.
     xt_xx = linspace(X0_traj(1, k+1) - 0.2, X0_traj(1, k+1) + 0.2, 100);
@@ -116,6 +118,19 @@ for k = 1:N-1
 
 end
 
+toc
+
 % Plot the unperturbed trajectory.
 ph = plot(ax_data, X0_traj(1, :), X0_traj(2, :), 'rx-');
 ph.LineWidth = 1;
+
+X0 = [-0.75; -0.75; 0; 0];
+ph = plot(ax_data, X0(1), X0(2), 'rx-');
+ph.LineWidth = 2;
+
+ax_data.Title.String = '(a)';
+ax_data.XLabel.Interpreter = 'latex';
+ax_data.XLabel.String = '$z_{1}$';
+ax_data.YLabel.Interpreter = 'latex';
+ax_data.YLabel.String = '$z_{2}$';
+ax_data.FontSize = 9;
