@@ -41,7 +41,8 @@ safe_set_projection = safe_set.slice([3, 4], zeros(2, 1));
 target_set_projection = target_set.slice([3, 4], zeros(2, 1));
 
 % Create the figure for plotting.
-df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
+df = figure('Units', 'points');
+% df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
 ax_data = axes(df);
 ax_data.NextPlot = 'add';
 plot(safe_set_projection, 'color', 'y', 'alpha', 0.1);
