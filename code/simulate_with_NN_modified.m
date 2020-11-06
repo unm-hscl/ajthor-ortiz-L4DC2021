@@ -11,7 +11,7 @@ Y = double.empty(4, 0);
 
 end_states = double.empty(4, 0);
 
-for m=1:30
+for m=1:50
 
     
 x0 = 0.6 + radius*rand(1);
@@ -79,5 +79,6 @@ end_states = [end_states, simulation_result(:, end)];
 % X = [X, simulation_result(:, 1:end-1)];
 % Y = [Y, simulation_result(:, 2:end)];
     
+save('figure4_samples.mat', 'X', 'Y');
     
 end
