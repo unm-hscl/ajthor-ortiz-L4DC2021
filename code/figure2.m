@@ -51,8 +51,7 @@ plot(target_set_projection, 'color', 'g', 'alpha', 0.1);
 
 Ts = 20;
 
-sys = srtCWHModel(Ts, ...
-    'Dimensionality', 4);
+sys = srtCWHModel(Ts, 'Dimensionality', 4);
 
 A = sys.A;
 B = sys.B;
