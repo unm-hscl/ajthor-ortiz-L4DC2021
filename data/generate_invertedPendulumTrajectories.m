@@ -44,15 +44,15 @@ for m=1:50
 
     for ct = 1:(Duration/Ts)
 
-        u = invertedPendulum_NN_output(x_now,10,1,'bigger_controller');
-
-        if stoc
-            x_now = x_now + 0.0025*randn(4, 1);
-        end
+        u = invertedPendulum_NN_output(x_now, 10, 1, 'bigger_controller');
 
         Y = [Y, x_now];
 
         x_next = invertedPendulum_dynamics(x_now, Ts, u);
+
+        if stoc
+            x_next = x_next + 0.0025*randn(4, 1);
+        end
 
         X = [X, x_next];
 

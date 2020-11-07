@@ -8,12 +8,7 @@ global simulation_result;
 
 function dxdt = tora(t, x)
     e = 0.1;
-    dxdt = [
-        x(2);
-        -x(1) + e * sin(x(3)) ;
-        x(4);
-        u
-        ];
+    dxdt = [x(2); -x(1) + e * sin(x(3)); x(4); u];
 end
 
 [t ,y] = ode45(@tora, [0 T], x0) ;

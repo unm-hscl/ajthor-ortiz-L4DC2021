@@ -14,7 +14,7 @@ results_CCO = SReachPoint(prob, alg_CCO, sys, X0);
 
 %% Load samples.
 
-load('../data/invertedPendulum_stoc.mat');
+load('../data/invertedPendulum_det.mat');
 
 %% Plotting
 
