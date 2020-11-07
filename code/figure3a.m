@@ -42,8 +42,8 @@ for k = 1:T
     m1 = mean(X(1, k:T:size(X, 2)));
     m2 = mean(X(2, k:T:size(X, 2)));
 
-    xt_xx = linspace(m1 - 0.2, m1 + 0.2, 100);
-    yt_yy = linspace(m2 - 0.2, m2 + 0.2, 100);
+    xt_xx = linspace(m1 - 0.25, m1 + 0.25, 100);
+    yt_yy = linspace(m2 - 0.25, m2 + 0.25, 100);
     [XX, YY] = meshgrid(xt_xx, yt_yy);
 
     Xt = [

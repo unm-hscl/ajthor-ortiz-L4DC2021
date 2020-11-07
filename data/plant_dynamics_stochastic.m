@@ -35,17 +35,17 @@ function dx = plant_dynamics_stochastic(u, ~, x) % params unuseful ???
     % quadrotor dynamics
     dx = zeros(12,1);
 
-    dx(1) = x(4)+0.03*randn(1);
-    dx(2) = x(5)+0.03*randn(1);
-    dx(3) = x(6)+0.03*randn(1);
-    dx(4) = x(8)*u(1)/m+0.03*randn(1);
-    dx(5) = -x(7)*u(1)/m+0.03*randn(1);
-    dx(6) = (-m*g + u(1))/m+0.03*randn(1);
-    dx(7) = x(10)+0.03*randn(1);
-    dx(8) = x(11)+0.03*randn(1);
-    dx(9) = x(12)+0.03*randn(1);
-    dx(10) = dotPhiCommand/Ix+0.03*randn(1);
-    dx(11) = dotThetaCommand/Iy+0.03*randn(1);
-    dx(12) = dotPsiCommand/Iz+0.03*randn(1);
+    dx(1) = x(4);
+    dx(2) = x(5);
+    dx(3) = x(6);
+    dx(4) = x(8)*u(1)/m;
+    dx(5) = -x(7)*u(1)/m;
+    dx(6) = (-m*g + u(1))/m;
+    dx(7) = x(10);
+    dx(8) = x(11);
+    dx(9) = x(12);
+    dx(10) = dotPhiCommand/Ix;
+    dx(11) = dotThetaCommand/Iy;
+    dx(12) = dotPsiCommand/Iz;
 
 end

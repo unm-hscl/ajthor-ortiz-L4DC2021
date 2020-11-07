@@ -56,32 +56,32 @@ while(simulation_count < no_of_traces )
 
     u = NN_output(x0, 100, 1, fnameNN);
 
-    
+
     % ODE integration
     odefun = @(t,x) plant_dynamics_stochastic(u, t, x );
 
     [ts, st] = ode45(odefun, 0:(time_step/50):time_step, x0);
     k = size(ts,1);
-    x0 = st(k,:)' ;
+    x0 = st(k,:)' + 0.005*randn(12, 1);
 
 %     plot_time(i+1) = i * time_step;
-    plot_time(i+1) = x0(interested_variable);
-    plot_variable(i+1) = x0(interested_variable+1);
+    % plot_time(i+1) = x0(interested_variable);
+    % plot_variable(i+1) = x0(interested_variable+1);
     % x0
     i = i + 1;
-    
+
     X = [X,x0];
-    
+
 %       x_next = system_eq_dis(x_now, Ts, u);
   end
 
   % x0
   simulation_count = simulation_count + 1;
-  figure(1)
-  plot(plot_time, plot_variable, 'color', 'r');
-  xlabel(['x_', num2str(interested_variable)]);
-  ylabel(['x_', num2str(interested_variable + 1)]);
-  hold on;
+  % figure(1)
+  % plot(plot_time, plot_variable, 'color', 'r');
+  % xlabel(['x_', num2str(interested_variable)]);
+  % ylabel(['x_', num2str(interested_variable + 1)]);
+  % hold on;
 end
 
 save('../data/drone_stochastic.mat', 'X');
