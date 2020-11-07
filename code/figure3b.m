@@ -14,7 +14,7 @@ ax_data.NextPlot = 'add';
 
 %% Load samples.
 
-load('../data/drone_det.mat'); 
+load('../data/drone_stochastic.mat'); 
 
 %% Plotting
 
@@ -75,12 +75,12 @@ toc
 
 %% Plot the results.
 
-ax_data.Title.String = '(a)';
+ax_data.Title.String = '(b)';
 ax_data.XLabel.Interpreter = 'latex';
 ax_data.XLabel.String = '$x_{1}$';
 ax_data.YLabel.Interpreter = 'latex';
 ax_data.YLabel.String = '$x_{2}$';
 ax_data.FontSize = 9;
 
-saveas(gcf, '../data/figure3a','eps');
-saveas(gcf, '../data/figure3a','fig');
+saveas(gcf, '../data/figure3b','eps');
+saveas(gcf, '../data/figure3b','fig');
