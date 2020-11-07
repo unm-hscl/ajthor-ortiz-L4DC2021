@@ -41,8 +41,7 @@ safe_set_projection = safe_set.slice([3, 4], zeros(2, 1));
 target_set_projection = target_set.slice([3, 4], zeros(2, 1));
 
 % Create the figure for plotting.
-df = figure('Units', 'points');
-% df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
+df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
 ax_data = axes(df);
 ax_data.NextPlot = 'add';
 plot(safe_set_projection, 'color', 'y', 'alpha', 0.1);
@@ -52,7 +51,8 @@ plot(target_set_projection, 'color', 'g', 'alpha', 0.1);
 
 Ts = 20;
 
-sys = srtCWHModel(Ts, 'Dimensionality', 4);
+sys = srtCWHModel(Ts, ...
+    'Dimensionality', 4);
 
 A = sys.A;
 B = sys.B;
@@ -95,7 +95,7 @@ for k = 1:N-1
 
     % Generate test points.
     xt_xx = linspace(X0_traj(1, k+1) - 0.2, X0_traj(1, k+1) + 0.2, 100);
-    yt_yy = linspace(X0_traj(2, k+1) - 0.2, X0_traj(1, k+1) + 0.2, 100);
+    yt_yy = linspace(X0_traj(2, k+1) - 0.2, X0_traj(2, k+1) + 0.2, 100);
     [XX, YY] = meshgrid(xt_xx, yt_yy);
 
     Xt = [

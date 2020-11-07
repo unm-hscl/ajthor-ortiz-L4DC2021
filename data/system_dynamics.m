@@ -1,9 +1,13 @@
-function final_val = system_eq_dis(x_initial,time, control_input)
+% This code is modified from original code written by Souradeep Dutta, taken
+% from https://github.com/souradeep-111/sherlock, and licensed under the MIT
+% license in the LICENSE_SHERLOCK file.
+
+function final_val = system_dynamics(x_initial,time, control_input)
 
 global simulation_result;
 
 function dxdt = tora(t,x)
- 
+
     e = 0.1;
     dxdt =[ x(2);
             -x(1) + e * sin(x(3)) ;

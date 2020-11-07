@@ -1,5 +1,8 @@
-function [y] =  NN_output(x,offset,scale_factor,name)
+% This code is modified from original code written by Souradeep Dutta, taken
+% from https://github.com/souradeep-111/sherlock, and licensed under the MIT
+% license in the LICENSE_SHERLOCK file.
 
+function [y] =  NN_output(x,offset,scale_factor,name)
 
 file = fopen(name,'r');
 file_data = fscanf(file,'%f');
@@ -37,7 +40,7 @@ g = do_thresholding(g);
 
 
 for i = 1:(no_of_hidden_layers)
-    
+
     weight_matrix = zeros(network_structure(i+1), network_structure(i));
     bias_matrix = zeros(network_structure(i+1),1);
 
@@ -50,7 +53,7 @@ for i = 1:(no_of_hidden_layers)
         bias_matrix(j) = file_data(pointer);
         pointer = pointer + 1;
     end
-   
+
     % Doing the transformation
     g = weight_matrix * g;
     g = g + bias_matrix(:);
@@ -62,4 +65,21 @@ y = g-offset;
 y = y * scale_factor;
 fclose(file);
 
+end
+
+% This code is modified from original code written by Souradeep Dutta, taken
+% from https://github.com/souradeep-111/sherlock, and licensed under the MIT
+% license in the LICENSE_SHERLOCK file.
+
+function[h] = do_thresholding(r)
+    [size_1, size_2]  = size(r);
+    out = zeros(size_1,1);
+    for i = 1:size_1
+       if(r(i) > 0)
+         out(i) = r(i);
+       else
+          out(i) = 0;
+       end
+    end
+    h = out;
 end

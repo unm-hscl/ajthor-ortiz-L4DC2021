@@ -19,7 +19,7 @@ load('../data/invertedPendulum_det.mat');
 %% Plotting
 
 % Generate output samples from initial condition.
-M = R;       % number of observations.
+M = R;          % number of observations.
 Mt = 10000;     % Number of test points.
 
 X0_traj = X(:, 1:T);
@@ -30,16 +30,13 @@ for p = 1:R
     ph.LineWidth = 0.5;
 end
 
+%% Classify points.
+
+alg = KernelClassifier('sigma', 0.1, 'lambda', 1/M);
+
 tic
 
 for k = 1:T
-
-%     X0_traj(:, k+1) = A*X0_traj(:, k) + B*U(:, k);
-% 
-%     X = A*X + B*U(:, k) + F*sys.Disturbance.sample(M);
-
-    % Plot a random sample of the points.
-    % scatter(ax_data, X(1, idx), X(2, idx), 'k.');
 
     % Generate test points.
     m1 = mean(X(1, k:T:size(X, 2)));
@@ -56,9 +53,6 @@ for k = 1:T
         repmat(mean(X(4, k:T:size(X, 2))), [1 Mt]);
         ];
 
-    %% Classify points.
-
-    alg = KernelClassifier('sigma', 0.1, 'lambda', 1/M);
     results = alg.Classify(X(:, k:T:size(X, 2)), Xt);
 
     C = double(reshape(results.contains, 100, 100));
@@ -75,7 +69,7 @@ toc
 
 ax_data.Title.String = '(a)';
 ax_data.XLabel.Interpreter = 'latex';
-ax_data.XLabel.String = '$z_{1}$';
+ax_data.XLabel.String = '$x_{1}$';
 ax_data.YLabel.Interpreter = 'latex';
-ax_data.YLabel.String = '$z_{3}$';
+ax_data.YLabel.String = '$x_{3}$';
 ax_data.FontSize = 9;
