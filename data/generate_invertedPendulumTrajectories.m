@@ -48,7 +48,11 @@ for m=1:50
 
         Y = [Y, x_now];
 
-        x_next = invertedPendulum_dynamics(x_now, Ts, u, stoc);
+        x_next = invertedPendulum_dynamics(x_now, Ts, u);
+
+        if stoc
+            x_next = x_next + 0.0025*randn(4, 1);
+        end
 
         X = [X, x_next];
 

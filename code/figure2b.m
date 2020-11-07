@@ -10,8 +10,6 @@ df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
 ax_data = axes(df);
 ax_data.NextPlot = 'add';
 
-results_CCO = SReachPoint(prob, alg_CCO, sys, X0);
-
 %% Load samples.
 
 load('../data/invertedPendulum_stoc.mat'); 
