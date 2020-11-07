@@ -18,17 +18,10 @@ x0 = 0.6 + radius*rand(1);
 y0 = -0.6 - radius*rand(1);
 z0 = -0.3 - radius*rand(1);
 w0 = 0.5 + radius*rand(1);
-    
-% x0 = 0.65  + radius*randn(1);
-% y0 = -0.65 + radius*randn(1);
-% z0 = -0.35 + radius*randn(1);
-% w0 = 0.55  + radius*randn(1);
-
 
 x = [x0;y0;z0;w0;];
 
 simulation_result = x;
-
 
 options = optimoptions('fmincon','Algorithm','sqp','Display','none');
 uopt = zeros(N,1);
@@ -67,18 +60,7 @@ for ct = 1:(Duration/Ts)
     x = x_next;
     x_now = x_next;
 end
-
-% plot(simulation_result(1,:),simulation_result(3,:), 'color', 'r');
-% % plot(X(1, :), X(3, :), 'k');
-% xlabel('x');
-% ylabel('z');
-% hold on;
-
-end_states = [end_states, simulation_result(:, end)];
-
-% X = [X, simulation_result(:, 1:end-1)];
-% Y = [Y, simulation_result(:, 2:end)];
     
-save('figure4_samples.mat', 'X', 'Y');
+save('invertedPendulum_det.mat', 'X', 'Y');
     
 end

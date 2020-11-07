@@ -7,27 +7,20 @@
 % Matlab to generate all figures and tables. Results are stored in the 'results'
 % folder.
 %
+%% Generate figure 1 in the paper.
+%
+disp('Generating figure1.')
+figure1a;
+figure1b;
+
 %% Generate figure 2 in the paper.
 %
 disp('Generating figure2.')
-figure2;
+figure2a;
+figure2b;
 
 %% Generate figure 3 in the paper.
 %
 disp('Generating figure3.')
-figure3;
-
-%% Generate figure 4 in the paper.
-%
-disp('Generating figure4.')
-figure4;
-
-%% Generate figure 5 in the paper.
-%
-disp('Generating figure5.')
-figure5;
-
-%% Generate table 1 in the paper.
-%
-disp('Generating table1.')
-table1;
+figure3a;
+figure3b;

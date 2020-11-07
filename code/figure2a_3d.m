@@ -6,7 +6,8 @@ R = 50;     % Number of trajectories.
 T = 200;    % Length of each trajectory.
 
 % Create the figure for plotting.
-df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
+df = figure('Units', 'points');
+% df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
 ax_data = axes(df);
 ax_data.NextPlot = 'add';
 
@@ -26,7 +27,7 @@ X0_traj = X(:, 1:T);
 
 % Plot the trajectories.
 for p = 1:R
-    ph = plot(ax_data, X(1, (p-1)*200+1:(p-1)*200+200), X(3, (p-1)*200+1:(p-1)*200+200), 'r');
+    ph = plot3(ax_data, X(1, (p-1)*200+1:(p-1)*200+200), X(3, (p-1)*200+1:(p-1)*200+200), 1:N, 'r');
     ph.LineWidth = 0.5;
 end
 
@@ -63,7 +64,9 @@ for k = 1:T
 
     C = double(reshape(results.contains, 100, 100));
 
-    [~, ch] = contour(ax_data, xt_xx, yt_yy, C, [1 1]);
+    C = C+k-1;
+
+    [~, ch] = contour3(ax_data, xt_xx, yt_yy, C, [k k]);
     ch.LineWidth = 1;
     ch.Color = 'b';
 
@@ -78,4 +81,10 @@ ax_data.XLabel.Interpreter = 'latex';
 ax_data.XLabel.String = '$z_{1}$';
 ax_data.YLabel.Interpreter = 'latex';
 ax_data.YLabel.String = '$z_{3}$';
+ax_data.ZLabel.Interpreter = 'latex';
+ax_data.ZLabel.String = '$k$';
 ax_data.FontSize = 9;
+
+grid on
+view([-15, 5]);
+camup([-1 0 0]);
