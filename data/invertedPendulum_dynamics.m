@@ -2,20 +2,21 @@
 % from https://github.com/souradeep-111/sherlock, and licensed under the MIT
 % license in the LICENSE_SHERLOCK file.
 
-function final_val = system_dynamics(x_initial,time, control_input)
+function final_val = invertedPendulum_dynamics(x0, T, u)
 
 global simulation_result;
 
-function dxdt = tora(t,x)
-
+function dxdt = tora(t, x)
     e = 0.1;
-    dxdt =[ x(2);
-            -x(1) + e * sin(x(3)) ;
-            x(4);
-            control_input ;];
+    dxdt = [
+        x(2);
+        -x(1) + e * sin(x(3)) ;
+        x(4);
+        u
+        ];
 end
 
-[t ,y] = ode45(@tora, [0 time],x_initial);
+[t ,y] = ode45(@tora, [0 T], x0) ;
 
 simulation_result = [simulation_result y'];
 
