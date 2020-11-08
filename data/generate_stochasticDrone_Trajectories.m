@@ -62,7 +62,7 @@ while(simulation_count < no_of_traces )
 
     [ts, st] = ode45(odefun, 0:(time_step/50):time_step, x0);
     k = size(ts,1);
-    x0 = st(k,:)' + 0.005*randn(12, 1);
+    x0 = st(k,:)' + 0.0025*randn(12, 1);
 
 %     plot_time(i+1) = i * time_step;
     % plot_time(i+1) = x0(interested_variable);

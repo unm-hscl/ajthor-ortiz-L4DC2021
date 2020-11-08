@@ -126,7 +126,7 @@ ph.LineWidth = 1;
 
 X0 = [-0.75; -0.75; 0; 0];
 ph = plot(ax_data, X0(1), X0(2), 'rx-');
-ph.LineWidth = 2;
+ph.LineWidth = 1;
 
 ax_data.Title.String = '(a)';
 ax_data.XLabel.Interpreter = 'latex';
