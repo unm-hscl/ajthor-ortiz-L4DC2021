@@ -104,7 +104,7 @@ end
 ph = plot(ax_data, X0_traj(1, :), X0_traj(2, :), 'rx-');
 ph.LineWidth = 1;
 
-ax_data.Title.String = '(a)';
+ax_data.Title.String = '(b)';
 ax_data.XLabel.Interpreter = 'latex';
 ax_data.XLabel.String = '$z_{1}$';
 ax_data.YLabel.Interpreter = 'latex';
