@@ -1,14 +1,13 @@
 # ajthor-ortiz-HSCC2021
 
-Code for the paper, "SReachTools Kernel Module: Data-Driven Stochastic Reachability Using Hilbert Space Embeddings of Distributions," HSCC 2021.
+Code for the paper, "Learning Approximate Forward Reachable Sets Using Separating Kernels," L4DC 2021.
 
-The code is provided in a CodeOcean capsule, located [here](https://codeocean.com/capsule/6944595/tree).
+The code is provided in a CodeOcean capsule.
 
 ### Repeatability Instructions
 
-It is recommended that the code be run from the CodeOcean capsule, located
-[here](https://codeocean.com/capsule/6944595/tree). On the capsule page, click
-'Reproducible Run' to run the code and generate all figures.
+It is recommended that the code be run from the CodeOcean capsule. On the
+capsule page, click 'Reproducible Run' to run the code and generate all figures.
 
 If you would like to reproduce the results locally, download the CodeOcean
 capsule by
@@ -19,42 +18,6 @@ the CodeOcean capsule to your system and following the instructions in the
 The main entry points for the code are located in the `code` directory and are
 called `run.sh` and `run_all.m`. These scripts generate the figures and tables
 used in the paper and should serve as the main repeatability files.
-
-#### Figure 1
-
-Figure 1 is a latex image file, generated using tikz, and as such is not
-included in the repeatability evaluation.
-
-#### Figure 2
-
-Figure 2 shows the computation time of the `KernelEmbeddings` algorithm as a
-function of the sample size `M`. As more samples are used to compute the
-approximation, the sample size increases exponentially. Use the `figure2.m`
-script to generate the figure.
-
-#### Figure 3
-
-Figure 2 shows the performance of the Kernel Module on a stochastic double
-integrator system for the first-hitting time problem. Use the `figure3.m` script
-to generate the figure.
-
-#### Figure 4
-
-Figure 2 shows the performance of the Kernel Module on a splanar quadrotor system for the first-hitting time problem. Use the `figure4.m` script
-to generate the figure.
-
-#### Figure 5
-
-Figure 2 shows the performance of the Kernel Module on a cart-pole system with
-neural network controller for the terminal-hitting time problem. Use the
-`figure5.m` script to generate the figure.
-
-#### Table 1
-
-Table 1 shows the computation time of the kernel-based algorithms compared with
-the existing algorithms in [SReachTools](https://sreachtools.github.io). It
-omits the algorithms, `ParticleOpen` and `VoronoiOpen`, since they use Gurobi
-and require an active license. Use the `table1.m` script to generate the table.
 
 ## License
 

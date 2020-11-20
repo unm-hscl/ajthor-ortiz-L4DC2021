@@ -7,9 +7,8 @@ no_of_steps = 50;
 time_step = 0.1;
 rad = 0.05;
 
+% Should the trajectories be stochastic?
 stoc = true;
-
-interested_variable = 1;
 
 fnameNN = 'Drone_NN.nt';
 
@@ -54,9 +53,8 @@ while (simulation_count < no_of_traces )
 
   x0 = initial_state;
 
-  plot_time(1) = x0(interested_variable);
-  plot_variable(1) = x0(interested_variable+1);
   i = 1;
+
   while (i <= no_of_steps)
 
     u = Drone_NN_output(x0, 100, 1, fnameNN);
@@ -71,7 +69,7 @@ while (simulation_count < no_of_traces )
 
     if stoc
         x0 = st(k,:)' + 0.0025*randn(12, 1);
-    else 
+    else
         x0 = st(k,:)';
     end
 

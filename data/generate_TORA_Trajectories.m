@@ -6,7 +6,8 @@ Ts = 0.1;           % Sample Time
 N = 3;              % Time horizon
 Duration = 20;      % Simulation horizon
 
-stoc = false;        % Should the trajectories be stochastic?
+% Should the trajectories be stochastic?
+stoc = true;        
 
 radius = 0.1;
 
