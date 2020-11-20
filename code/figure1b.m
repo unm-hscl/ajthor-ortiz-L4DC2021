@@ -111,20 +111,23 @@ ax_data.YLabel.Interpreter = 'latex';
 ax_data.YLabel.String = '$z_{2}$';
 ax_data.FontSize = 9;
 
+saveas(gcf, '../results/figure1b','png');
+saveas(gcf, '../results/figure1b','fig');
 
-function [x,y,z] = get_points(C,clipping_radius)
-n=100; % Number of points around ellipse
-p=0:pi/n:2*pi; % angles around a circle
-[V, D] = eig(C); % Compute eigen-stuff
-xy = [cos(p'),sin(p')] * sqrt(D) * V'; % Transformation
-x = xy(:,1);
-y = xy(:,2);
-z = zeros(size(x));
-% Clip data to a bounding radius
-if nargin >= 2
-  r = sqrt(sum(xy.^2,2)); % Euclidian distance (distance from center)
-  x(r > clipping_radius) = nan;
-  y(r > clipping_radius) = nan;
-  z(r > clipping_radius) = nan;
-end
+
+function [x, y, z] = get_points(C, clipping_radius)
+    n = 100;
+    p = 0:pi/n:2*pi;
+    [V, D] = eig(C);
+    xy = [cos(p'), sin(p')] * sqrt(D) * V';
+    x = xy(:, 1);
+    y = xy(:, 2);
+    z = zeros(size(x));
+
+    if nargin >= 2
+      r = sqrt(sum(xy.^2, 2)); % Euclidian distance (distance from center)
+      x(r > clipping_radius) = nan;
+      y(r > clipping_radius) = nan;
+      z(r > clipping_radius) = nan;
+    end
 end

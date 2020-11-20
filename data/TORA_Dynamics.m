@@ -2,7 +2,7 @@
 % from https://github.com/souradeep-111/sherlock, and licensed under the MIT
 % license in the LICENSE_SHERLOCK file.
 
-function final_val = invertedPendulum_dynamics(x0, T, u)
+function final_val = TORA_Dynamics(x0, T, u)
 
 global simulation_result;
 

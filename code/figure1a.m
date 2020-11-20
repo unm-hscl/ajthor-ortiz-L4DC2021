@@ -133,3 +133,6 @@ ax_data.XLabel.String = '$z_{1}$';
 ax_data.YLabel.Interpreter = 'latex';
 ax_data.YLabel.String = '$z_{2}$';
 ax_data.FontSize = 9;
+
+saveas(gcf, '../results/figure1a','png');
+saveas(gcf, '../results/figure1a','fig');

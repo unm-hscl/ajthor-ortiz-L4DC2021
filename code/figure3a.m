@@ -10,11 +10,9 @@ df = figure('Units', 'points', 'Position', [0, 0, 200, 150]);
 ax_data = axes(df);
 ax_data.NextPlot = 'add';
 
-% results_CCO = SReachPoint(prob, alg_CCO, sys, X0);
-
 %% Load samples.
 
-load('../data/drone_det.mat'); 
+load('../data/Drone_det.mat');
 
 %% Plotting
 
@@ -82,5 +80,5 @@ ax_data.YLabel.Interpreter = 'latex';
 ax_data.YLabel.String = '$x_{2}$';
 ax_data.FontSize = 9;
 
-saveas(gcf, '../data/figure3a','eps');
-saveas(gcf, '../data/figure3a','fig');
+saveas(gcf, '../results/figure3a','png');
+saveas(gcf, '../results/figure3a','fig');

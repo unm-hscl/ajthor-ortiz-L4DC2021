@@ -6,9 +6,11 @@ Ts = 0.1;           % Sample Time
 N = 3;              % Time horizon
 Duration = 20;      % Simulation horizon
 
-stoc = true;        % Should the trajectories be stochastic?
+stoc = false;        % Should the trajectories be stochastic?
 
 radius = 0.1;
+
+fnameNN = 'TORA_NN.nt';
 
 global simulation_result;
 
@@ -44,11 +46,11 @@ for m=1:50
 
     for ct = 1:(Duration/Ts)
 
-        u = invertedPendulum_NN_output(x_now, 10, 1, 'bigger_controller');
+        u = TORA_NN_output(x_now, 10, 1, fnameNN);
 
         Y = [Y, x_now];
 
-        x_next = invertedPendulum_dynamics(x_now, Ts, u);
+        x_next = TORA_Dynamics(x_now, Ts, u);
 
         if stoc
             % x_next = x_next + 0.0025*randn(4, 1);
@@ -63,19 +65,19 @@ for m=1:50
 
     end
 
-    if stoc
-        save('invertedPendulum_stoc.mat', 'X', 'Y');
-    else
-        save('invertedPendulum_det.mat', 'X', 'Y');
-    end
+end
 
+if stoc
+    save('TORA_stoc.mat', 'X', 'Y');
+else
+    save('TORA_det.mat', 'X', 'Y');
 end
 
 % This code is modified from original code written by Souradeep Dutta, taken
 % from https://github.com/souradeep-111/sherlock, and licensed under the MIT
 % license in the LICENSE_SHERLOCK file.
 
-function [y] =  invertedPendulum_NN_output(x,offset,scale_factor,name)
+function [y] =  TORA_NN_output(x,offset,scale_factor,name)
 
 file = fopen(name,'r');
 file_data = fscanf(file,'%f');

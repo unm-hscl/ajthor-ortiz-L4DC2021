@@ -12,7 +12,7 @@ ax_data.NextPlot = 'add';
 
 %% Load samples.
 
-load('../data/invertedPendulum_det.mat'); 
+load('../data/TORA_det.mat');
 
 %% Plotting
 
@@ -71,3 +71,6 @@ ax_data.XLabel.String = '$x_{1}$';
 ax_data.YLabel.Interpreter = 'latex';
 ax_data.YLabel.String = '$x_{3}$';
 ax_data.FontSize = 9;
+
+saveas(gcf, '../results/figure2a','png');
+saveas(gcf, '../results/figure2a','fig');
