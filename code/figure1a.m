@@ -1,3 +1,5 @@
+rng(5); % 1
+
 %% Define the problem.
 N = 5;
 
@@ -76,9 +78,6 @@ X = repmat(X0, [1 M]);
 
 U = reshape(results_CCO.opt_input_vec, [2 N-1]);
 
-% Choose a random sample of points from the data.
-idx = randperm(M, 25);
-
 X0_traj = zeros(4, N);
 X0_traj(:, 1) = X0;
 
@@ -101,8 +100,8 @@ for k = 1:N-1
     Xt = [
         reshape(XX, 1, []);
         reshape(YY, 1, []);
-        zeros(1, Mt);
-        zeros(1, Mt)
+        repmat(mean(X(3, :)), [1 Mt]);
+        repmat(mean(X(4, :)), [1 Mt])
         ];
 
     %% Classify points.
