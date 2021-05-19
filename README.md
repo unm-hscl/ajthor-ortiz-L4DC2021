@@ -1,4 +1,4 @@
-# ajthor-ortiz-HSCC2021
+# ajthor-ortiz-L4DC2021
 
 Code for the paper, "Learning Approximate Forward Reachable Sets Using Separating Kernels," L4DC 2021.
 
